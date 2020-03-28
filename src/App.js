@@ -1,24 +1,31 @@
 import React, { Component } from "react"
+import { render } from 'react-dom';
+import { ApolloProvider } from '@apollo/react-hooks';
 import logo from "./logo.svg"
 import "./App.css"
 
+import ApolloClient from "apollo-boost";
+const client = new ApolloClient({
+  uri: "/.netlify/functions/graphql"
+});
+
 class LambdaDemo extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = { loading: false, msg: null }
   }
 
   handleClick = api => e => {
-    e.preventDefault()
+    e.preventDefault();
 
-    this.setState({ loading: true })
+    this.setState({ loading: true });
     fetch("/.netlify/functions/" + api)
       .then(response => response.json())
       .then(json => this.setState({ loading: false, msg: json.msg }))
-  }
+  };
 
   render() {
-    const { loading, msg } = this.state
+    const { loading, msg } = this.state;
 
     return (
       <p>
@@ -31,20 +38,14 @@ class LambdaDemo extends Component {
   }
 }
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <LambdaDemo />
-        </header>
-      </div>
-    )
-  }
-}
+const App = () => (
+  <ApolloProvider client={client}>
+    <div>
+      <LambdaDemo />
+    </div>
+  </ApolloProvider>
+);
+
+render(<App />, document.getElementById('root'));
 
 export default App
