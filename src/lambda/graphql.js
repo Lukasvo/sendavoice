@@ -2,15 +2,36 @@
 const { ApolloServer, gql } = require("apollo-server-lambda");
 
 const typeDefs = gql`
+    type Charity {
+        #_id: ID!
+        _id: String
+        title: String
+        description: String
+        url: String
+    }
+    
     type Query {
-        hello: String
+        charities: [Charity]!
     }
 `;
 
 const resolvers = {
   Query: {
-    hello: (parent, args, context) => {
-      return "Hello, world!";
+    charities: (parent, args, context) => {
+      return [
+        {
+          _id: 'abc',
+          title: 'Groceries for everyone',
+          description: 'Supports elderly people by sending someone to make their groceries at their place.',
+          url: 'https://www.gfe.be',
+        },
+        {
+          _id: 'def',
+          title: 'Lorem ipsum',
+          description: 'Supports elderly people by sending someone to make their groceries at their place.',
+          url: 'https://www.gfe.be',
+        }
+      ];
     }
   }
 };
