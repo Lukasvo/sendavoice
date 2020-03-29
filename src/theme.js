@@ -1,6 +1,19 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 export default createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Montserrat',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
   overrides: {
     MuiContainer: {
       root: {

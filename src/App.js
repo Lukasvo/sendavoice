@@ -10,6 +10,7 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import theme from "./theme";
 import Welcome from './components/Welcome';
 import Record from './components/Record';
+import Charities from './components/Charities';
 
 const client = new ApolloClient({
   uri: "/.netlify/functions/graphql"
@@ -24,6 +25,10 @@ const App = () => {
     {
       path: '/record',
       component: Record,
+    },
+    {
+      path: '/charities',
+      component: Charities,
     },
   ];
 

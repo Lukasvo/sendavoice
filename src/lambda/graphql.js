@@ -19,18 +19,7 @@ const resolvers = {
   Query: {
     charities: (parent, args, context) => {
       return [
-        {
-          _id: 'abc',
-          title: 'Groceries for everyone',
-          description: 'Supports elderly people by sending someone to make their groceries at their place.',
-          url: 'https://www.gfe.be',
-        },
-        {
-          _id: 'def',
-          title: 'Lorem ipsum',
-          description: 'Supports elderly people by sending someone to make their groceries at their place.',
-          url: 'https://www.gfe.be',
-        }
+
       ];
     }
   }
