@@ -7,7 +7,6 @@ body {
 h1, h2, h3, h4, h5, p, .logo, li, button {
   color: #000;
   font-family: Montserrat, Arial, sans-serif;
-  font-weight: 500;
 }
 
 h1, h2, h3, h4, h5 {

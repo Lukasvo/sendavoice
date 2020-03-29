@@ -3,9 +3,10 @@ import ShadowIcon from './ShadowIcon';
 import phone from '../img/phone.svg';
 import bubbleSpeak from '../img/bubble-speak.svg';
 import handWash from '../img/hand-wash.svg';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
-const Welcome = ({ children, className, style }) => {
+const Welcome = () => {
   return <>
     <h1>Share a recording to elderly people and donate to support them</h1>
 
@@ -31,7 +32,10 @@ const Welcome = ({ children, className, style }) => {
     </ul>
 
     <div style={{ textAlign: 'center' }}>
-      <Button>Send a voice now !</Button>
+      <Button
+        color="primary"
+        component={Link}
+        to="/record">Send a voice now !</Button>
     </div>
   </>
 };

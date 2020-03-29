@@ -4,31 +4,55 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from "apollo-boost";
 import "./App.css"
 import Logo from './components/Logo';
-import ShadowIcon from './components/ShadowIcon';
-import bubbleSpeak from './img/bubble-speak.svg';
-import handWash from './img/hand-wash.svg';
-import phone from './img/phone.svg';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
-import Button from "@material-ui/core/Button";
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import theme from "./theme";
 import Welcome from './components/Welcome';
+import Record from './components/Record';
 
 const client = new ApolloClient({
   uri: "/.netlify/functions/graphql"
 });
 
-const App = () => (
-  <MuiThemeProvider theme={theme}>
-    <ApolloProvider client={client}>
-      <Container maxWidth="lg">
-        <Logo />
+const App = () => {
+  const menu = [
+    {
+      path: '/',
+      component: Welcome,
+    },
+    {
+      path: '/record',
+      component: Record,
+    },
+  ];
 
-        <Welcome />
-      </Container>
-    </ApolloProvider>
-  </MuiThemeProvider>
-);
+  return (
+    <MuiThemeProvider theme={theme}>
+      <ApolloProvider client={client}>
+
+        <Router>
+          <Container maxWidth="lg">
+            <Logo/>
+            <Switch>
+              {menu.map(({ path, component }) => {
+                const Component = component;
+
+                return (<Route key={`m-${path}`}
+                               exact path={path}
+                               render={props => <Component {...props}
+                                                           componentKey={path}
+                               />
+                               }/>);
+              })}
+              />
+            </Switch>
+          </Container>
+        </Router>
+      </ApolloProvider>
+    </MuiThemeProvider>
+  );
+};
 
 render(<App />, document.getElementById('root'));
 
