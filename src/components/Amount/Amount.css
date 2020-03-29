@@ -1,0 +1,12 @@
+.amount,
+.amount .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.amount h2 {
+  font-size: 36px;
+}
+.amount .form button {
+  margin: 20px 0;
+}
