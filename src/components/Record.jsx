@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
-import RecordButton from './RecordButton';
+import RecordButton from './Record/RecordButton';
+import './Record/record.css';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -8,15 +9,18 @@ const Record = () => {
   const Mode = {
     WAITING: 0,
     RECORDING: 1,
-    RECORDED: 2,
+    RECORDED: 2
   };
 
   const [mode, setMode] = useState(Mode.WAITING);
   const [blobURL, setBlobUrl] = useState('');
   const [isBlocked, setIsBlocked] = useState(false);
+  const [isRecording, setRecording] = useState(false);
 
   const start = () => {
-    navigator.getUserMedia({ audio: true },
+    setRecording(true);
+    navigator.getUserMedia(
+      { audio: true },
       () => {
         console.log('Permission Granted');
         setIsBlocked(false);
@@ -24,54 +28,43 @@ const Record = () => {
       () => {
         console.log('Permission Denied');
         setIsBlocked(true);
-      },
+      }
     );
 
     if (isBlocked) {
       console.log('Permission Denied');
     } else {
-      Mp3Recorder
-        .start()
+      Mp3Recorder.start()
         .then(() => {
-          console.log('Set recording')
+          console.log('Set recording');
           setMode(Mode.RECORDING);
-        }).catch((e) => console.error(e));
+        })
+        .catch(e => console.error(e));
     }
   };
 
   const stop = () => {
-    Mp3Recorder
-      .stop()
+    Mp3Recorder.stop()
       .getMp3()
       .then(([buffer, blob]) => {
         setBlobUrl(URL.createObjectURL(blob));
         setMode(Mode.RECORDED);
-      }).catch((e) => console.log(e));
+      })
+      .catch(e => console.log(e));
+    setRecording(false);
   };
 
-  const CurrentModeRender = () => {
-    switch (mode) {
-      case Mode.RECORDING:
-        return <RecordButton onClick={stop} isRecording={true}>
-          <p>Tap to stop recording</p>
-        </RecordButton>;
-
-      case Mode.RECORDED:
-        return <audio src={blobURL} controls="controls" />;
-
-      case Mode.WAITING:
-      default:
-        return <RecordButton onClick={start} isRecording={false}>
-          <p>Tap to record a message</p>
-        </RecordButton>;
-    }
-  };
-
-  return <>
-    <h1>Share a recording to elderly people and donate to support them</h1>
-
-    <CurrentModeRender/>
-  </>
+  return (
+    <div className='recording'>
+      <h1>Share a recording to elderly people and donate to support them</h1>
+      <RecordButton
+        mode={mode}
+        onClick={isRecording ? stop : start}
+        isRecording={isRecording}
+        blobURL={blobURL}
+      />
+    </div>
+  );
 };
 
 export default Record;

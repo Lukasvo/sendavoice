@@ -1,0 +1,21 @@
+.recording {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.recording h1 {
+  font-size: 36px;
+}
+.recording p {
+  font-size: 18px;
+}
+.send {
+  display: flex;
+  flex-direction: column;
+}
+.send {
+  margin-bottom: 48px;
+}
+.send button {
+  margin-top: 20px;
+}
