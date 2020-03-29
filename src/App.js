@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
@@ -6,6 +6,7 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 import Logo from './components/Logo';
 import Welcome from './components/Welcome';
+import ChooseLanguage from './components/ChooseLanguage';
 import Record from './components/Record';
 import Charities from './components/Charities';
 import Amount from './components/Amount/Amount';
@@ -13,10 +14,16 @@ import Thanks from './components/Thanks/Thanks';
 import './App.css';
 
 const App = () => {
+  const [language, setLanguage] = useState('nl');
+
   const menu = [
     {
       path: '/',
       component: Welcome
+    },
+    {
+      path: '/chooseLanguage',
+      component: ChooseLanguage
     },
     {
       path: '/record',
@@ -52,7 +59,7 @@ const App = () => {
                   exact
                   path={path}
                   render={props => (
-                    <Component {...props} componentKey={path} />
+                    <Component {...props} componentKey={path} setLanguage={setLanguage} language={language} />
                   )}
                 />
               );

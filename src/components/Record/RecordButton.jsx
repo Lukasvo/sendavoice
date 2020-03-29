@@ -10,17 +10,24 @@ const RecordButton = ({ mode, isRecording, onClick, blobURL, upload }) => {
     RECORDED: 2
   };
 
+  const recordStyle = {
+    border: '16px solid #d5d4fe',
+    height: 172,
+    width: 172,
+    padding: 0,
+  };
+
   const GetModeText = () => {
     switch (mode) {
       case Mode.RECORDING:
-        return <p>Tap to stop recording</p>;
+        return 'Tap to stop recording';
 
       case Mode.RECORDED:
-        return <p>Tap to record again</p>;
+        return 'Tap to record again';
 
       case Mode.WAITING:
       default:
-        return <p>Tap to record a message</p>;
+        return 'Tap to record a message';
     }
   };
 
@@ -32,7 +39,7 @@ const RecordButton = ({ mode, isRecording, onClick, blobURL, upload }) => {
           <Button onClick={upload}>Send this voice! </Button>
         </div>
       )}
-      <Button onClick={onClick}>
+      <Button onClick={onClick} style={recordStyle}>
         {isRecording ? (
           <div
             style={{
@@ -43,10 +50,10 @@ const RecordButton = ({ mode, isRecording, onClick, blobURL, upload }) => {
             }}
           />
         ) : (
-          <img src={mic} alt='Record with a microphone' height={'48px'} />
+          <img src={mic} alt='Record with a microphone' style={{ height: 82 }} />
         )}
       </Button>
-      {GetModeText()}
+      <p style={{ fontWeight: 300, fontSize: 29 }}>{GetModeText()}</p>
     </>
   );
 };

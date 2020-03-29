@@ -25,12 +25,12 @@ export default createMuiTheme({
         backgroundSize: '200% auto',
         transition: '0.5s',
         background:
-          'linear-gradient(to right, #B721FF 0%, #3CB3FD 40%, #21D4FD 51%, #3CB3FD 60%, #B721FF 100%)',
+          'right center linear-gradient(101deg, #B721FF 0%, #3CB3FD 87%, #21D4FD 100%)',
         boxShadow: '0 3px 30px #00000029',
         borderRadius: 100,
         '&:hover': {
-          backgroundPosition: 'right center'
-        }
+          backgroundPosition: 'left center'
+        },
       },
       text: {
         padding: '20px 43px'

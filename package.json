@@ -4,11 +4,11 @@
   "private": true,
   "contributors": [
     {
-      "name" : "Lukas Van Orshoven",
-      "url" : "http://linkedin.com/in/lukasvanorshoven"
+      "name": "Lukas Van Orshoven",
+      "url": "http://linkedin.com/in/lukasvanorshoven"
     },
     {
-      "name" : "Maarten Verbeeck"
+      "name": "Maarten Verbeeck"
     }
   ],
   "dependencies": {
@@ -57,6 +57,7 @@
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.8.6",
+    "react-jss": "^10.1.1",
     "react-router-dom": "^5.1.2",
     "react-share": "^4.1.0",
     "resolve": "1.15.0",

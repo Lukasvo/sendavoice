@@ -35,7 +35,7 @@ const Welcome = () => {
       <Button
         color="primary"
         component={Link}
-        to="/record">Send a voice now !</Button>
+        to="/chooseLanguage">Send a voice now !</Button>
     </div>
   </>
 };

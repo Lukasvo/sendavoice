@@ -20,7 +20,7 @@ const Charities = () => {
       display: 'flex',
       padding: 0,
       background: '#fff',
-      transition: '.5s'
+      transition: '.3s'
     },
     img: {
       borderRadius: '20px 0 0 20px',

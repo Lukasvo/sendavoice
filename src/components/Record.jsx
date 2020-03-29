@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 import RecordButton from './Record/RecordButton';
 import './Record/record.css';
+import { Redirect } from 'react-router-dom';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
-const Record = () => {
+const Record = ({ language }) => {
   const Mode = {
     WAITING: 0,
     RECORDING: 1,
@@ -17,6 +18,7 @@ const Record = () => {
   const [file, setFile] = useState('');
   const [isBlocked, setIsBlocked] = useState(false);
   const [isRecording, setRecording] = useState(false);
+  const [isRedirect, setIsRedirect] = useState(false);
 
   const start = () => {
     setRecording(true);
@@ -69,11 +71,14 @@ const Record = () => {
     })
       .then(response => response.json())
       .then(json => {
-        alert('🎤 Upload succeeded!')
+        setIsRedirect(true);
+      })
+      .catch(err => {
+        alert(err);
       });
   };
 
-  return (
+  return (isRedirect ? <Redirect to='/thanks' /> :
     <div className='recording'>
       <h1>Share a recording to elderly people</h1>
       <RecordButton
