@@ -75,7 +75,7 @@ const Record = () => {
 
   return (
     <div className='recording'>
-      <h1>Share a recording to elderly people and donate to support them</h1>
+      <h1>Share a recording to elderly people</h1>
       <RecordButton
         mode={mode}
         onClick={isRecording ? stop : start}

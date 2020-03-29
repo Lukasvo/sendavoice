@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 
 const Welcome = () => {
   return <>
-    <h1>Share a recording to elderly people and donate to support them</h1>
+    <h1>Share a recording to elderly people</h1>
 
     <ul className="features">
       <li>
