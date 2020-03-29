@@ -14,6 +14,7 @@ const Record = () => {
 
   const [mode, setMode] = useState(Mode.WAITING);
   const [blobURL, setBlobUrl] = useState('');
+  const [file, setFile] = useState('');
   const [isBlocked, setIsBlocked] = useState(false);
   const [isRecording, setRecording] = useState(false);
 
@@ -47,11 +48,29 @@ const Record = () => {
     Mp3Recorder.stop()
       .getMp3()
       .then(([buffer, blob]) => {
+        setFile(new File(buffer, `recording-${Date.now()}.mp3`, {
+          type: blob.type,
+          lastModified: Date.now()
+        }));
         setBlobUrl(URL.createObjectURL(blob));
         setMode(Mode.RECORDED);
       })
       .catch(e => console.log(e));
     setRecording(false);
+  };
+
+  const upload = () => {
+    fetch("/.netlify/functions/uploadRecording", {
+      method: 'POST',
+      headers: {
+        //"Content-Type": "You will perhaps need to define a content-type here"
+      },
+      body: file
+    })
+      .then(response => response.json())
+      .then(json => {
+        alert('🎤 Upload succeeded!')
+      });
   };
 
   return (
@@ -62,6 +81,7 @@ const Record = () => {
         onClick={isRecording ? stop : start}
         isRecording={isRecording}
         blobURL={blobURL}
+        upload={upload}
       />
     </div>
   );

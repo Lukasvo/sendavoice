@@ -3,7 +3,7 @@ import mic from '../../img/microphone.svg';
 import Button from '@material-ui/core/Button';
 import './record.css';
 
-const RecordButton = ({ mode, isRecording, onClick, blobURL }) => {
+const RecordButton = ({ mode, isRecording, onClick, blobURL, upload }) => {
   const Mode = {
     WAITING: 0,
     RECORDING: 1,
@@ -13,7 +13,7 @@ const RecordButton = ({ mode, isRecording, onClick, blobURL }) => {
   const GetModeText = () => {
     switch (mode) {
       case Mode.RECORDING:
-        return <p>Tap to stop recording;</p>;
+        return <p>Tap to stop recording</p>;
 
       case Mode.RECORDED:
         return <p>Tap to record again</p>;
@@ -29,7 +29,7 @@ const RecordButton = ({ mode, isRecording, onClick, blobURL }) => {
       {mode === Mode.RECORDED && (
         <div className='send'>
           <audio src={blobURL} controls='controls' />
-          <Button>Send this voice! </Button>
+          <Button onClick={upload}>Send this voice! </Button>
         </div>
       )}
       <Button onClick={onClick}>
