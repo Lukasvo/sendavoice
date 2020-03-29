@@ -9,6 +9,7 @@ import Welcome from './components/Welcome';
 import Record from './components/Record';
 import Charities from './components/Charities';
 import Amount from './components/Amount/Amount';
+import Thanks from './components/Thanks/Thanks';
 import './App.css';
 
 const App = () => {
@@ -23,11 +24,16 @@ const App = () => {
     },
     {
       path: '/charities',
-      component: Charities,
+      component: Charities
     },
     {
       path: '/amount',
       component: Amount
+    },
+
+    {
+      path: '/thanks',
+      component: Thanks
     }
   ];
 
