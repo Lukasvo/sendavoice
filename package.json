@@ -77,7 +77,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "start:lambda": "netlify-lambda serve src/lambda --config config/webpack.functions.js",
-    "build": "run-p build:**",
+    "build": "yarn build:app && yarn build:lambda",
     "build:app": "node scripts/build.js",
     "build:lambda": "netlify-lambda build src/lambda --config config/webpack.functions.js",
     "test": "node scripts/test.js"
